@@ -1,0 +1,391 @@
+/**
+ * 岗位工作台公共样式（dk = desk kit）。
+ * 六个角色面板共用一套视觉语言，只靠 --accent / --soft 区分岗位色，
+ * 这样切换账号时布局不会跳，认知成本最低。
+ */
+
+.dk-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(212px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.dk-kpi {
+  padding: 15px 17px;
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+
+.dk-kpi.click {
+  cursor: pointer;
+}
+
+.dk-kpi.click:hover {
+  transform: translateY(-2px);
+  border-color: #cfdbf7;
+  box-shadow: 0 10px 24px rgba(24, 42, 76, 0.1);
+}
+
+.dk-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dk-kpi-label {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.dk-kpi-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.dk-kpi-value {
+  font-size: 23px;
+  font-weight: 650;
+  color: #1f2b3d;
+  margin: 10px 0 8px;
+  letter-spacing: 0.2px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dk-kpi-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #97a3b6;
+  flex-wrap: wrap;
+}
+
+.dk-delta {
+  padding: 1px 7px;
+  border-radius: 6px;
+  font-size: 11.5px;
+}
+
+.dk-delta.up {
+  color: #0f9d76;
+  background: #e8f8f2;
+}
+
+.dk-delta.down {
+  color: #c0392b;
+  background: #fdeceb;
+}
+
+.dk-delta.warn {
+  color: #b45309;
+  background: #fdf4e3;
+}
+
+.dk-delta.info {
+  color: #2f5fe0;
+  background: #eef3ff;
+}
+
+/* 两列：主面板 + 副面板 */
+.dk-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+  align-items: start;
+}
+
+.dk-two-col.even {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.dk-two-col.single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 1180px) {
+  .dk-two-col,
+  .dk-two-col.even {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dk-panel {
+  padding: 16px 18px 18px;
+  min-width: 0;
+  margin-bottom: 16px;
+}
+
+.dk-two-col .dk-panel {
+  margin-bottom: 0;
+}
+
+.dk-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.dk-head h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2b3d;
+}
+
+.dk-head p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.dk-badge {
+  font-size: 12px;
+  color: #5c6b82;
+  background: #f2f5fb;
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.dk-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 12.5px;
+  color: #2f5fe0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dk-link:hover {
+  text-decoration: underline;
+}
+
+/* 列表行 */
+.dk-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dk-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: 8px;
+  border-bottom: 1px dashed #eef1f7;
+  transition: background 0.15s ease;
+  min-width: 0;
+}
+
+.dk-row:last-child {
+  border-bottom: none;
+}
+
+.dk-row.click {
+  cursor: pointer;
+}
+
+.dk-row.click:hover {
+  background: #f8faff;
+}
+
+.dk-row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.dk-row-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #273449;
+  min-width: 0;
+}
+
+.dk-row-title {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dk-row-sub {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: #8b98ab;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dk-row-side {
+  font-size: 12px;
+  color: #8b98ab;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.dk-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: var(--accent, #2f5fe0);
+  background: var(--soft, #eef3ff);
+  flex-shrink: 0;
+}
+
+/* 进度条 */
+.dk-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: #f1f4fa;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.dk-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8fb4ff, var(--accent, #3b6cff));
+}
+
+/* 紧凑表格 */
+.dk-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.dk-table th {
+  text-align: left;
+  font-weight: 400;
+  font-size: 11.5px;
+  color: #8b98ab;
+  padding: 4px 8px 8px;
+  border-bottom: 1px solid #eef1f7;
+  white-space: nowrap;
+}
+
+.dk-table td {
+  padding: 9px 8px;
+  border-bottom: 1px dashed #f2f5fa;
+  color: #33415a;
+}
+
+.dk-table tr.click {
+  cursor: pointer;
+}
+
+.dk-table tr.click:hover td {
+  background: #f8faff;
+}
+
+.dk-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dk-table .strong {
+  font-weight: 600;
+  color: #1f2b3d;
+}
+
+.dk-table .danger {
+  color: #c0392b;
+  font-weight: 500;
+}
+
+.dk-table .good {
+  color: #0f9d76;
+}
+
+.dk-table .muted {
+  color: #8b98ab;
+}
+
+.dk-table .mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+}
+
+/* 小标签 */
+.dk-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  line-height: 18px;
+  white-space: nowrap;
+  background: #f2f5fb;
+  color: #5c6b82;
+}
+
+.dk-tag.danger {
+  background: #fdeceb;
+  color: #c0392b;
+}
+
+.dk-tag.warn {
+  background: #fdf4e3;
+  color: #b45309;
+}
+
+.dk-tag.ok {
+  background: #e8f8f2;
+  color: #0f9d76;
+}
+
+.dk-tag.info {
+  background: #eef3ff;
+  color: #2f5fe0;
+}
+
+.dk-empty {
+  padding: 30px 0;
+  text-align: center;
+  color: #97a3b6;
+  font-size: 13px;
+}
+
+/* 数字强调 */
+.dk-figure {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #1f2b3d;
+}
+
+.dk-muted {
+  color: #8b98ab;
+}
+
+.dk-danger {
+  color: #c0392b;
+}
+
+.dk-ok {
+  color: #0f9d76;
+}

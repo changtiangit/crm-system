@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/crm?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  port: 8080
+
+# ---------------------------------------------------------------
+# 短信验证码登录
+#   provider=mock    : 本地模拟，验证码打印到后端控制台并回显前端（开发用）
+#   provider=cloopen : 走容联云通讯 TemplateSMS（真实下发）
+#   切换：环境变量 SMS_PROVIDER=cloopen，或把下面 provider 默认值改成 cloopen
+#   密钥建议生产环境走环境变量，不要提交到 Git
+# ---------------------------------------------------------------
+sms:
+  provider: ${SMS_PROVIDER:cloopen}        # 默认走真实短信；本地不想发短信时用 SMS_PROVIDER=mock
+  expose-code: ${SMS_EXPOSE_CODE:true}     # 仅对 mock 生效；生产必须改为 false
+  code-length: ${SMS_CODE_LENGTH:6}         # 云通讯测试模板(templateId=1)只支持 4 位
+  code-ttl-seconds: 300                    # 验证码有效期 5 分钟
+  send-interval-seconds: 60                # 同一手机号发送间隔
+  daily-limit: 10                          # 同一手机号 24 小时上限
+  max-attempts: 5                          # 单个验证码可错次数
+  cloopen:
+    rest-url: ${CLOOPEN_REST_URL:https://app.cloopen.com}
+    port: ${CLOOPEN_PORT:8883}
+    account-sid: ${CLOOPEN_ACCOUNT_SID:}
+    auth-token: ${CLOOPEN_AUTH_TOKEN:}
+    app-id: ${CLOOPEN_APP_ID:}
+    template-id: ${CLOOPEN_TEMPLATE_ID:1}  # 1=官方测试模板(【云通讯】您的验证码是{1}，请于{2}分钟内正确输入)
+                                           #   注意：模板变量只接受 1-4 位数字，代码会自动把验证码降为 4 位；
+                                           #   且只能发给「号码管理 → 测试号码」里已登记的号码。
+                                           #   自建模板需企业认证 + 累计充值 3000 元，拿到模板ID后替换这里即可（可恢复 6 位）。

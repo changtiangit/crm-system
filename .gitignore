@@ -1,0 +1,26 @@
+# Local/editor state
+.workbuddy/
+.idea/
+.vscode/
+*.log
+*.tmp
+
+# Frontend generated files
+**/node_modules/
+Vue3 前端/dist/
+Vue3 前端/dist-ssr/
+
+# Java build output and local Maven cache
+**/target/
+Spring Boot/.m2/
+Spring Boot/maven-settings.xml
+
+# Environment-specific secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+**/application-local.yml
+**/application-prod.yml
+**/application-secret.yml
